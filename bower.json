@@ -1,0 +1,20 @@
+{
+	"name": "leavitt-quill-image-resize-module",
+	"description": "A module for resizing a leavitt custom element image in Quill.",
+	"main": "image-resize.min.js",
+	"authors": [
+		"kaseyjameshinton@gmail.com"
+	],
+	"license": "MIT",
+	"keywords": [
+		"leavitt"
+	],
+	"homepage": "https://github.com/LeavittSoftware/leavitt-quill-image-resize-module",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	]
+}
