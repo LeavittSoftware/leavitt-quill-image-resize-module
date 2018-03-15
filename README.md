@@ -72,7 +72,7 @@ const quill = new Quill(editor, {
     modules: {
         // ...
         ImageResize: {
-            modules: [ 'Resize', 'DisplaySize', 'Toolbar' ]
+            modules: [ 'Resize', 'DisplaySize' ]
         }
     }
 });
@@ -123,36 +123,6 @@ var quill = new Quill(editor, {
                 color: white
                 // other camelCase styles for size display
             }
-        }
-    }
-});
-```
-
-#### `Toolbar` - Image alignment tools
-
-Displays a toolbar below the image, where the user can select an alignment for the image.
-
-The look and feel can be controlled with options:
-
-```javascript
-var quill = new Quill(editor, {
-    // ...
-    modules: {
-        // ...
-        ImageResize: {
-            // ...
-            toolbarStyles: {
-                backgroundColor: 'black',
-                border: 'none',
-                color: white
-                // other camelCase styles for size display
-            },
-            toolbarButtonStyles: {
-                // ...
-            },
-            toolbarButtonSvgStyles: {
-                // ...
-            },
         }
     }
 });

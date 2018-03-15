@@ -3,12 +3,10 @@
 ## v3.0.0 - April 9, 2017
 
 - Position drag handles relative to editor, not document
-- Simplify toolbar and use floats
 - Improved styling
 
 ## v2.0.0 - April 3, 2017
 
-- Added toolbar for alignment
 - Modularized
 - Fix resize bug
 

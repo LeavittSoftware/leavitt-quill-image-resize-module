@@ -5,15 +5,11 @@ import {
 	DisplaySize
 } from './modules/DisplaySize';
 import {
-	Toolbar
-} from './modules/Toolbar';
-import {
 	Resize
 } from './modules/Resize';
 
 const knownModules = {
 	DisplaySize,
-	Toolbar,
 	Resize
 };
 
@@ -28,6 +24,7 @@ export default class ImageResize {
 		// save the quill reference and options
 		this.quill = quill;
 		this.homeSecureImage;
+		this.img;
 
 		// Apply the options to our defaults, and stash them for later
 		// defaultsDeep doesn't do arrays as you'd expect, so we'll need to apply the classes array from options separately
@@ -95,10 +92,11 @@ export default class ImageResize {
 
 	handleClick = (evt) => {
 		let target;
+		let homeSecureImage;
 
 		if (evt.target && evt.target.tagName && evt.target.tagName.toUpperCase() === 'HOME-SECURE-IMAGE') {
 			target = Array.from(evt.target.shadowRoot.children).filter(i => i.tagName === 'IMG')[0];
-			this.homeSecureImage = evt.target;
+			homeSecureImage = evt.target;
 		} else if (evt.target && evt.target.tagName && evt.target.tagName.toUpperCase() === 'IMG') {
 			target = evt.target;
 		}
@@ -116,13 +114,13 @@ export default class ImageResize {
 			this.hide();
 		}
 		// clicked on an image inside the editor
-		this.show(target);
+		this.show(target, homeSecureImage);
 	}
 
-	show = (img) => {
+	show = (img, homeSecureImage) => {
 		// keep track of this img element
 		this.img = img;
-
+		this.homeSecureImage = homeSecureImage;
 		this.showOverlay();
 
 		this.initializeModules();
@@ -186,10 +184,10 @@ export default class ImageResize {
 		});
 
 		let setHomeSecureImageHeight = debounce(() => {
-			if (!this.overlay)
+			if (!this.homeSecureImage)
 				return;
-			let homeSecureImage = Array.from(parent.children[0].children).filter(i => i.tagName === 'HOME-SECURE-IMAGE')[0];
-			homeSecureImage.setAttribute('height', parseInt(this.overlay.style.height));
+			this.homeSecureImage.setAttribute('height', parseInt(this.overlay.style.height));
+			this.homeSecureImage.setAttribute('width', parseInt(this.overlay.style.width));
 		}, 800);
 
 		setHomeSecureImageHeight();
@@ -199,6 +197,7 @@ export default class ImageResize {
 		this.hideOverlay();
 		this.removeModules();
 		this.img = undefined;
+		this.homeSecureImage = undefined;
 	};
 
 	setUserSelect = (value) => {
