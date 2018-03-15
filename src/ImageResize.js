@@ -46,6 +46,7 @@ export default class ImageResize {
 
 		// respond to clicks inside the editor
 		this.quill.root.addEventListener('click', this.handleClick, false);
+		this.quill.root.onscroll = this.hide.bind(this);
 
 		this.quill.root.parentNode.style.position = this.quill.root.parentNode.style.position || 'relative';
 
